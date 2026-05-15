@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-red: #ff1a1a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-body text-base font-normal text-black antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold uppercase tracking-display;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--color-red);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .headline {
+    @apply font-display font-bold uppercase tracking-display;
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12;
+  }
+
+  .container-content {
+    @apply mx-auto w-full max-w-content;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-red px-8 py-3 font-display text-sm font-bold uppercase tracking-display text-white transition-colors duration-200;
+  }
+
+  .btn-primary:hover {
+    @apply bg-black;
+  }
+
+  .link-red {
+    @apply font-display text-sm font-bold uppercase tracking-display text-red transition-colors duration-200 hover:text-black;
+  }
+
+  .border-divider {
+    @apply border border-black;
+  }
+}

@@ -1,0 +1,70 @@
+---
+import Layout from '../components/Layout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const teaserProjects = [
+  {
+    title: '[PROJECT TITLE PLACEHOLDER]',
+    description: '[Short project description placeholder.]',
+  },
+  {
+    title: '[PROJECT TITLE PLACEHOLDER]',
+    description: '[Short project description placeholder.]',
+  },
+  {
+    title: '[PROJECT TITLE PLACEHOLDER]',
+    description: '[Short project description placeholder.]',
+  },
+];
+---
+
+<Layout
+  title="Pete McPherson"
+  description="Pete McPherson — [placeholder]"
+>
+  <!-- Hero -->
+  <section class="section-padding">
+    <div class="container-content">
+      <h1 class="headline mb-8 max-w-4xl text-5xl leading-none md:text-7xl lg:text-8xl">
+        Pete McPherson
+      </h1>
+      <p class="mb-12 max-w-xl font-body text-lg text-black md:text-xl">
+        [Subtitle placeholder — one line about what you do.]
+      </p>
+      <a href="/about" class="btn-primary">
+        Learn More
+      </a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="border-t border-black section-padding">
+    <div class="container-content max-w-2xl">
+      <NewsletterForm />
+    </div>
+  </section>
+
+  <!-- Latest Projects -->
+  <section class="border-t border-black section-padding">
+    <div class="container-content">
+      <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <h2 class="headline text-4xl md:text-5xl">Latest Projects</h2>
+        <a href="/projects" class="link-red">
+          All Projects →
+        </a>
+      </div>
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+        {
+          teaserProjects.map((project) => (
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              variant="teaser"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

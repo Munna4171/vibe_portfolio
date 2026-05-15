@@ -1,0 +1,60 @@
+---
+import Layout from '../components/Layout.astro';
+
+const skills = [
+  '[Skill placeholder 1]',
+  '[Skill placeholder 2]',
+  '[Skill placeholder 3]',
+  '[Skill placeholder 4]',
+];
+---
+
+<Layout
+  title="About — Pete McPherson"
+  description="Pete McPherson — [placeholder]"
+>
+  <section class="section-padding">
+    <div class="container-content">
+      <h1 class="headline mb-20 text-5xl md:text-7xl">Who I Am</h1>
+
+      <div class="grid gap-16 lg:grid-cols-[400px_1fr] lg:gap-20">
+        <!-- Profile image: replace src with final asset when ready -->
+        <img
+          src="/images/placeholder-profile.svg"
+          alt="Pete McPherson"
+          width="400"
+          height="400"
+          class="mx-auto h-[400px] w-[400px] max-w-full shrink-0 border border-black object-cover"
+        />
+
+        <div class="flex flex-col gap-8">
+          <p class="headline text-2xl leading-snug md:text-3xl">
+            [HEADLINE PLACEHOLDER — 1-2 sentences about Pete McPherson]
+          </p>
+          <p class="font-body text-base leading-relaxed text-black">
+            [PARAGRAPH PLACEHOLDER — 3-4 sentences bio]
+          </p>
+          <p class="font-body text-base leading-relaxed text-black">
+            [SECOND PARAGRAPH PLACEHOLDER — background, expertise, etc.]
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-black section-padding">
+    <div class="container-content">
+      <h2 class="headline mb-12 text-3xl md:text-4xl">What I Do</h2>
+      <ol class="flex flex-col gap-6">
+        {
+          skills.map((skill, i) => (
+            <li class="flex gap-6 font-body text-lg text-black">
+              <span class="headline shrink-0 text-red">{i + 1}.</span>
+              <span>{skill}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</Layout>

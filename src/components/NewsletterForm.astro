@@ -1,0 +1,33 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label = 'Join my weekly newsletter.' } = Astro.props;
+---
+
+<form
+  method="POST"
+  action="#"
+  class="flex flex-col gap-4 sm:flex-row sm:items-end"
+>
+  <div class="flex flex-1 flex-col gap-2">
+    <label for="newsletter-email" class="font-body text-sm text-black">
+      {label}
+    </label>
+    <input
+      type="email"
+      id="newsletter-email"
+      name="email"
+      required
+      placeholder="your@email.com"
+      class="w-full border border-black bg-white px-4 py-3 font-body text-base text-black placeholder:text-black"
+    />
+  </div>
+  <button type="submit" class="btn-primary shrink-0">
+    Join
+  </button>
+</form>
+<p class="mt-4 font-body text-sm text-black">
+  [FORM STATUS MESSAGE PLACEHOLDER]
+</p>

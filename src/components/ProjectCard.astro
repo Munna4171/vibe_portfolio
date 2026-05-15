@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags?: string[];
+  href?: string;
+  variant?: 'teaser' | 'full';
+}
+
+const {
+  title,
+  description,
+  tags = [],
+  href = '#',
+  variant = 'full',
+} = Astro.props;
+
+const linkText = variant === 'teaser' ? 'View →' : 'View Project →';
+---
+
+<article class="group flex flex-col">
+  {
+    variant === 'full' && (
+      <div
+        class="mb-6 h-[200px] w-full border border-black transition-colors duration-200 group-hover:border-red"
+        role="img"
+        aria-label={`${title} placeholder image`}
+      />
+    )
+  }
+  <h3 class="headline mb-2 text-xl">{title}</h3>
+  <p class="mb-4 font-body text-base text-black">{description}</p>
+  {
+    tags.length > 0 && (
+      <p class="mb-4 font-body text-sm text-red">
+        {tags.join(', ')}
+      </p>
+    )
+  }
+  <a href={href} class="link-red mt-auto w-fit">
+    {linkText}
+  </a>
+</article>

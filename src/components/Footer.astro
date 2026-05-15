@@ -1,0 +1,44 @@
+---
+import NewsletterForm from './NewsletterForm.astro';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+];
+---
+
+<footer class="border-t border-black bg-white">
+  <div class="container-content section-padding">
+    <div class="grid gap-16 md:grid-cols-2 md:gap-12">
+      <div>
+        <p class="headline mb-6 text-sm">Stay in touch</p>
+        <NewsletterForm />
+      </div>
+      <div class="flex flex-col justify-between gap-8">
+        <nav aria-label="Footer navigation">
+          <ul class="flex flex-wrap gap-6">
+            {
+              links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="headline text-sm text-black transition-colors duration-200 hover:text-red"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <p class="font-body text-sm text-black">
+          &copy; 2026 Pete McPherson
+        </p>
+        <a href="#top" class="link-red w-fit">
+          Back to top &uarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
