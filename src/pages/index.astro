@@ -1,6 +1,5 @@
 ---
 import Layout from '../components/Layout.astro';
-import NewsletterForm from '../components/NewsletterForm.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { person } from '../data/site';
 import { projects } from '../data/projects';
@@ -31,13 +30,6 @@ const teaserProjects = projects.slice(0, 3);
           GitHub profile
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Newsletter -->
-  <section class="border-t border-black section-padding">
-    <div class="container-content max-w-2xl">
-      <NewsletterForm />
     </div>
   </section>
 

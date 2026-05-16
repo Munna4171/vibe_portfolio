@@ -36,9 +36,7 @@ export const whatIDo = [
 ];
 
 /**
- * Education timeline — leave empty until you add real rows.
- * Example row:
- * { degree: 'B.Tech Computer Science', institution: 'Your University', period: '2020–2024', highlights: ['Dean’s list', 'Coursework: DBMS, Stats'] }
+ * Education timeline — edit rows in `education` below.
  */
 export type EducationEntry = {
   degree: string;
@@ -47,7 +45,18 @@ export type EducationEntry = {
   highlights?: string[];
 };
 
-export const education: EducationEntry[] = [];
+export const education: EducationEntry[] = [
+  {
+    degree: 'B.Tech in Information Technology',
+    institution: 'Vardhaman College of Engineering',
+    period: '2023–2027',
+    highlights: [
+      'Core coursework (IT): database systems & SQL, data structures, probability & statistics, web technologies, software engineering.',
+      'Portfolio-aligned domains: analytical SQL & relational modeling (e‑commerce / logistics analytics); Python & Jupyter for exploratory analysis; visualization & dashboards; JavaScript & MERN workshop patterns; static sites with Astro.',
+      'Keywords: SQL · Python · Pandas · Jupyter Notebook · data analytics · data visualization · Tableau · Git/GitHub · JavaScript · MERN · Astro · Tailwind CSS · Cloudflare.',
+    ],
+  },
+];
 
 /** Optional contact lines — fill to show mailto / LinkedIn */
 export const contact = {

@@ -42,8 +42,7 @@ npm run preview  # serve dist/ locally
     ├── components/
     │   ├── Layout.astro         # HTML shell, fonts, meta, global CSS import
     │   ├── Navigation.astro     # sticky nav, active link via Astro.url.pathname
-    │   ├── Footer.astro         # copyright, nav repeat, newsletter
-    │   ├── NewsletterForm.astro # reusable email form (POST action="#")
+    │   ├── Footer.astro         # copyright, nav repeat, GitHub, back to top
     │   └── ProjectCard.astro    # teaser | full variants
     ├── pages/
     │   ├── index.astro          # Home
@@ -59,8 +58,8 @@ Do **not** add SSR, API routes, or server adapters unless the product requiremen
 
 | Route | File | Purpose |
 |-------|------|---------|
-| `/` | `src/pages/index.astro` | Hero, newsletter, latest-projects teaser (3 cards) |
-| `/about` | `src/pages/about.astro` | Bio placeholders, profile image, “What I Do” list |
+| `/` | `src/pages/index.astro` | Hero, featured-project teaser (3 cards) |
+| `/about` | `src/pages/about.astro` | Bio, education, recruiter snapshot, “What I Do” |
 | `/projects` | `src/pages/projects.astro` | 6 project cards in responsive grid |
 
 Every page must use `Layout.astro` (which includes `Navigation` and `Footer`).
@@ -130,16 +129,7 @@ Links: Home, About, Projects. Active route: `text-red` via `Astro.url.pathname`.
 
 ### `Footer.astro`
 
-Includes `NewsletterForm`, repeated nav links, copyright year + full name, GitHub link, link to `#top`.
-
-### `NewsletterForm.astro`
-
-Prop: `label` (default: “Join my weekly newsletter.”).
-
-- `<form method="POST" action="#">` — backend not wired; user will connect later
-- Email input: `required`, `type="email"`, `name="email"`
-- Submit: “Join”, `.btn-primary`
-- Status line placeholder: `[FORM STATUS MESSAGE PLACEHOLDER]` — do not add client state machines
+Repeated nav links, copyright year + full name, GitHub link, link to `#top`.
 
 ### `ProjectCard.astro`
 
@@ -201,7 +191,6 @@ Output is plain HTML/CSS. No Workers, D1, or SSR required for current scope.
 | Project grid layout only | `src/pages/projects.astro` + `ProjectCard.astro` |
 | Global styles / tokens | `src/styles/global.css`, `tailwind.config.mjs` |
 | Site title / meta | `Layout.astro` props per page |
-| Newsletter endpoint | `NewsletterForm.astro` `action` attribute |
 | New static asset | `public/` (reference as `/path/from/public`) |
 
 ## Adding a new page
