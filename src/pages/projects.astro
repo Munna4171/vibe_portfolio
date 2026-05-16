@@ -1,21 +1,32 @@
 ---
 import Layout from '../components/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-
-const projects = Array.from({ length: 6 }, () => ({
-  title: '[PROJECT TITLE PLACEHOLDER]',
-  description: '[Short project description placeholder.]',
-  tags: ['[Tag 1]', '[Tag 2]'],
-}));
+import { person } from '../data/site';
+import { projects } from '../data/projects';
 ---
 
 <Layout
-  title="Projects — Pete McPherson"
-  description="Pete McPherson — [placeholder]"
+  title={`Projects — ${person.fullName}`}
+  description={`GitHub projects by ${person.fullName}: SQL analytics, Python notebooks, Astro, JavaScript.`}
 >
   <section class="section-padding">
     <div class="container-content">
-      <h1 class="headline mb-20 text-5xl md:text-7xl">Projects</h1>
+      <div class="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <h1 class="headline mb-6 text-5xl md:text-7xl">Projects</h1>
+          <p class="max-w-2xl font-body text-lg text-black">
+            Each card opens the live GitHub repository—clone history, READMEs, and notebooks are the source of truth for depth.
+          </p>
+        </div>
+        <a
+          href={person.githubUrl}
+          class="link-red shrink-0"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View all on GitHub →
+        </a>
+      </div>
 
       <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
         {
@@ -24,7 +35,9 @@ const projects = Array.from({ length: 6 }, () => ({
               title={project.title}
               description={project.description}
               tags={project.tags}
+              href={project.href}
               variant="full"
+              external
             />
           ))
         }

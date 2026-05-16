@@ -1,10 +1,12 @@
-# AGENTS.md — Pete McPherson Portfolio
+# AGENTS.md — Bhagath Pranav Portfolio
 
 Guide for AI agents and contributors working in this repository.
 
 ## Project overview
 
-Static personal portfolio for **Pete McPherson**. Minimal, editorial design: black/white/red only, generous whitespace, no client-side frameworks.
+Static personal portfolio for **Bhagath Pranav**. Minimal, editorial design: black/white/red only, generous whitespace, no client-side frameworks.
+
+**Content source:** Identity, bio, optional education, and contact hints live in `src/data/site.ts`. GitHub-linked projects live in `src/data/projects.ts`.
 
 | Item | Value |
 |------|--------|
@@ -118,7 +120,7 @@ Focus rings: `outline: 2px solid #FF1A1A` (see `global.css` `:focus-visible`).
 
 ### `Layout.astro`
 
-Props: `title`, `description` (default meta: `Pete McPherson — [placeholder]`).
+Props: `title`, `description` (defaults highlight Bhagath Pranav + portfolio tagline).
 
 Imports `../styles/global.css`. Sets `lang="en"` and `id="top"` on `<html>` for footer “Back to top”.
 
@@ -128,7 +130,7 @@ Links: Home, About, Projects. Active route: `text-red` via `Astro.url.pathname`.
 
 ### `Footer.astro`
 
-Includes `NewsletterForm`, repeated nav links, `© 2026 Pete McPherson`, link to `#top`.
+Includes `NewsletterForm`, repeated nav links, copyright year + full name, GitHub link, link to `#top`.
 
 ### `NewsletterForm.astro`
 
@@ -150,14 +152,16 @@ Props:
 | `tags` | `string[]` | `[]` | Red text; projects page only |
 | `href` | string | `#` | Project link |
 | `variant` | `'teaser' \| 'full'` | `'full'` | `teaser`: no image, “View →”; `full`: image block, “View Project →” |
+| `external` | `boolean` | `false` | When true: `target="_blank"` + `rel="noopener noreferrer"` |
 
 Full variant image area: 300×200 placeholder `div`, `border-black`, `group-hover:border-red`.
 
-## Content placeholders
+## Content & data
 
-Copy and project data are intentionally bracketed, e.g. `[PROJECT TITLE PLACEHOLDER]`. Replace in page frontmatter or inline when real content is available.
+- **`src/data/site.ts`** — Name, tagline, bio, optional education timeline, optional email / LinkedIn (shown when filled).
+- **`src/data/projects.ts`** — Project titles, one-line descriptions, tags, and GitHub URLs.
 
-Profile image: `public/images/placeholder-profile.svg` (swap path in `about.astro` when final asset exists).
+Profile photo defaults to the GitHub avatar URL from `site.ts`. Point `avatarUrl` at a file under `public/` if you prefer a self-hosted image.
 
 ## Cloudflare Pages deployment
 
@@ -191,9 +195,10 @@ Output is plain HTML/CSS. No Workers, D1, or SSR required for current scope.
 
 | Task | Where to edit |
 |------|----------------|
-| Update hero / home sections | `src/pages/index.astro` |
-| Bio and skills | `src/pages/about.astro` |
-| Project grid | `src/pages/projects.astro` + `ProjectCard.astro` |
+| Update hero | `src/pages/index.astro` |
+| Bio, education, “What I do” | `src/data/site.ts` (layout on `about.astro`) |
+| Project list & GitHub links | `src/data/projects.ts` |
+| Project grid layout only | `src/pages/projects.astro` + `ProjectCard.astro` |
 | Global styles / tokens | `src/styles/global.css`, `tailwind.config.mjs` |
 | Site title / meta | `Layout.astro` props per page |
 | Newsletter endpoint | `NewsletterForm.astro` `action` attribute |

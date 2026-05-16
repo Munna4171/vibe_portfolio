@@ -2,39 +2,35 @@
 import Layout from '../components/Layout.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { person } from '../data/site';
+import { projects } from '../data/projects';
 
-const teaserProjects = [
-  {
-    title: '[PROJECT TITLE PLACEHOLDER]',
-    description: '[Short project description placeholder.]',
-  },
-  {
-    title: '[PROJECT TITLE PLACEHOLDER]',
-    description: '[Short project description placeholder.]',
-  },
-  {
-    title: '[PROJECT TITLE PLACEHOLDER]',
-    description: '[Short project description placeholder.]',
-  },
-];
+const teaserProjects = projects.slice(0, 3);
 ---
 
-<Layout
-  title="Pete McPherson"
-  description="Pete McPherson — [placeholder]"
->
+<Layout title={person.fullName} description={person.metaDescription}>
   <!-- Hero -->
   <section class="section-padding">
     <div class="container-content">
       <h1 class="headline mb-8 max-w-4xl text-5xl leading-none md:text-7xl lg:text-8xl">
-        Pete McPherson
+        {person.fullName}
       </h1>
-      <p class="mb-12 max-w-xl font-body text-lg text-black md:text-xl">
-        [Subtitle placeholder — one line about what you do.]
+      <p class="mb-8 max-w-2xl font-body text-lg text-black md:text-xl">
+        {person.tagline}
       </p>
-      <a href="/about" class="btn-primary">
-        Learn More
-      </a>
+      <div class="flex flex-wrap gap-4">
+        <a href="/about" class="btn-primary">
+          About & education
+        </a>
+        <a
+          href={person.githubUrl}
+          class="btn-primary bg-black hover:bg-red"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub profile
+        </a>
+      </div>
     </div>
   </section>
 
@@ -49,9 +45,9 @@ const teaserProjects = [
   <section class="border-t border-black section-padding">
     <div class="container-content">
       <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <h2 class="headline text-4xl md:text-5xl">Latest Projects</h2>
+        <h2 class="headline text-4xl md:text-5xl">Featured repos</h2>
         <a href="/projects" class="link-red">
-          All Projects →
+          All projects →
         </a>
       </div>
       <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
@@ -60,7 +56,9 @@ const teaserProjects = [
             <ProjectCard
               title={project.title}
               description={project.description}
+              href={project.href}
               variant="teaser"
+              external
             />
           ))
         }

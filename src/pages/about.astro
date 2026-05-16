@@ -1,42 +1,82 @@
 ---
 import Layout from '../components/Layout.astro';
-
-const skills = [
-  '[Skill placeholder 1]',
-  '[Skill placeholder 2]',
-  '[Skill placeholder 3]',
-  '[Skill placeholder 4]',
-];
+import { bio, contact, education, person, whatIDo } from '../data/site';
 ---
 
 <Layout
-  title="About — Pete McPherson"
-  description="Pete McPherson — [placeholder]"
+  title={`About — ${person.fullName}`}
+  description={`About ${person.fullName}: analytics, SQL, Python, and GitHub projects.`}
 >
   <section class="section-padding">
     <div class="container-content">
-      <h1 class="headline mb-20 text-5xl md:text-7xl">Who I Am</h1>
+      <h1 class="headline mb-20 text-5xl md:text-7xl">About</h1>
 
       <div class="grid gap-16 lg:grid-cols-[400px_1fr] lg:gap-20">
-        <!-- Profile image: replace src with final asset when ready -->
         <img
-          src="/images/placeholder-profile.svg"
-          alt="Pete McPherson"
+          src={person.avatarUrl}
+          alt={person.avatarAlt}
           width="400"
           height="400"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
           class="mx-auto h-[400px] w-[400px] max-w-full shrink-0 border border-black object-cover"
         />
 
         <div class="flex flex-col gap-8">
           <p class="headline text-2xl leading-snug md:text-3xl">
-            [HEADLINE PLACEHOLDER — 1-2 sentences about Pete McPherson]
+            {bio.headline}
           </p>
-          <p class="font-body text-base leading-relaxed text-black">
-            [PARAGRAPH PLACEHOLDER — 3-4 sentences bio]
-          </p>
-          <p class="font-body text-base leading-relaxed text-black">
-            [SECOND PARAGRAPH PLACEHOLDER — background, expertise, etc.]
-          </p>
+          {bio.paragraphs.map((p) => (
+            <p class="font-body text-base leading-relaxed text-black">{p}</p>
+          ))}
+          <div class="border-divider flex flex-col gap-4 p-6">
+            <p class="headline text-sm">Recruiter snapshot</p>
+            <ul class="list-none space-y-3 font-body text-base text-black">
+              <li>
+                <span class="font-display font-bold uppercase tracking-display text-red">
+                  GitHub:
+                </span>{' '}
+                <a
+                  href={person.githubUrl}
+                  class="link-red inline text-base normal-case"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @{person.githubUsername}
+                </a>
+              </li>
+              {
+                contact.email ? (
+                  <li>
+                    <span class="font-display font-bold uppercase tracking-display text-red">
+                      Email:
+                    </span>{' '}
+                    <a href={`mailto:${contact.email}`} class="link-red inline text-base normal-case">
+                      {contact.email}
+                    </a>
+                  </li>
+                ) : null
+              }
+              {
+                contact.linkedinUrl ? (
+                  <li>
+                    <span class="font-display font-bold uppercase tracking-display text-red">
+                      LinkedIn:
+                    </span>{' '}
+                    <a
+                      href={contact.linkedinUrl}
+                      class="link-red inline text-base normal-case"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Profile
+                    </a>
+                  </li>
+                ) : null
+              }
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -44,10 +84,53 @@ const skills = [
 
   <section class="border-t border-black section-padding">
     <div class="container-content">
-      <h2 class="headline mb-12 text-3xl md:text-4xl">What I Do</h2>
+      <h2 class="headline mb-12 text-3xl md:text-4xl">Education</h2>
+      {
+        education.length === 0 ? (
+          <div class="max-w-3xl space-y-6 font-body text-base leading-relaxed text-black">
+            <p>
+              Add your degrees (school, dates, honours or coursework) in your site config so they appear here—until then, recruiters can rely on the public repos linked from{' '}
+              <a href="/projects" class="link-red normal-case">
+                Projects
+              </a>
+              .
+            </p>
+          </div>
+        ) : (
+          <ol class="flex flex-col gap-12">
+            {education.map((entry) => (
+              <li class="border-divider p-6">
+                <p class="headline mb-2 text-xl">{entry.degree}</p>
+                <p class="mb-2 font-body text-base font-normal text-black">
+                  {entry.institution}
+                  {entry.period ? ` · ${entry.period}` : ''}
+                </p>
+                {
+                  entry.highlights?.length ? (
+                    <ul class="mt-4 list-none space-y-2 font-body text-base text-black">
+                      {entry.highlights.map((h) => (
+                        <li class="flex gap-3">
+                          <span class="headline shrink-0 text-red">•</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null
+                }
+              </li>
+            ))}
+          </ol>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-black section-padding">
+    <div class="container-content">
+      <h2 class="headline mb-12 text-3xl md:text-4xl">What I do</h2>
       <ol class="flex flex-col gap-6">
         {
-          skills.map((skill, i) => (
+          whatIDo.map((skill, i) => (
             <li class="flex gap-6 font-body text-lg text-black">
               <span class="headline shrink-0 text-red">{i + 1}.</span>
               <span>{skill}</span>

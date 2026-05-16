@@ -1,5 +1,6 @@
 ---
 import NewsletterForm from './NewsletterForm.astro';
+import { person } from '../data/site';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -33,7 +34,17 @@ const links = [
           </ul>
         </nav>
         <p class="font-body text-sm text-black">
-          &copy; 2026 Pete McPherson
+          &copy; {new Date().getFullYear()} {person.fullName}
+        </p>
+        <p class="font-body text-sm">
+          <a
+            href={person.githubUrl}
+            class="link-red"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub → @{person.githubUsername}
+          </a>
         </p>
         <a href="#top" class="link-red w-fit">
           Back to top &uarr;

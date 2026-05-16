@@ -5,6 +5,8 @@ interface Props {
   tags?: string[];
   href?: string;
   variant?: 'teaser' | 'full';
+  /** Opens GitHub etc. in a new tab */
+  external?: boolean;
 }
 
 const {
@@ -13,7 +15,12 @@ const {
   tags = [],
   href = '#',
   variant = 'full',
+  external = false,
 } = Astro.props;
+
+const anchorAttrs = external
+  ? { target: '_blank' as const, rel: 'noopener noreferrer' }
+  : {};
 
 const linkText = variant === 'teaser' ? 'View →' : 'View Project →';
 ---
@@ -37,7 +44,7 @@ const linkText = variant === 'teaser' ? 'View →' : 'View Project →';
       </p>
     )
   }
-  <a href={href} class="link-red mt-auto w-fit">
+  <a href={href} class="link-red mt-auto w-fit" {...anchorAttrs}>
     {linkText}
   </a>
 </article>
