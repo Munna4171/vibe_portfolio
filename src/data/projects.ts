@@ -81,7 +81,7 @@ export const projects: Project[] = [
     description: 'Personal portfolio site built with Astro',
     tags: ['Astro'],
     href: 'https://github.com/BhagathPranav/vibe_portfolio',
-    live: 'https://vibe-portfolio-ten-pi.vercel.app',
+    live: 'https://bhagathpranav.vercel.app',
     image: '/images/vibe_portfolio_preview.png',
     mainTech: 'Astro',
   },
