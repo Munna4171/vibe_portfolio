@@ -1,0 +1,43 @@
+---
+import Layout from '../components/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { person } from '../data/site';
+import { projects } from '../data/projects';
+---
+
+<Layout
+  title={`Projects — ${person.fullName}`}
+  description={`GitHub projects by ${person.fullName}: SQL analytics, Python notebooks, Astro, JavaScript.`}
+>
+  <section class="section-padding border-b border-borderline/20">
+    <div class="container-content max-w-4xl fade-up">
+      <h1 class="headline mb-8 text-7xl md:text-9xl leading-none text-foreground">Projects</h1>
+      <p class="max-w-2xl font-body text-xl text-muted leading-relaxed">
+        Each card opens the live GitHub repository—clone history, READMEs, and notebooks are the source of truth for depth.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-content">
+      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          projects.map((project, index) => (
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              href={project.href}
+              live={project.live}
+              image={project.image}
+              mainTech={project.mainTech}
+              variant="full"
+              external
+              delay={index % 3}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

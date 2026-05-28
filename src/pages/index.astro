@@ -1,0 +1,120 @@
+---
+import Layout from '../components/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { person, bio, education } from '../data/site';
+import { projects } from '../data/projects';
+
+const featuredProjects = projects.filter(p =>
+  ['AI-chart', 'Pinventory', 'Vibe Portfolio'].includes(p.title)
+);
+---
+
+<Layout title={person.fullName} description={person.metaDescription}>
+  <!-- 1. Hero Section -->
+  <section class="px-6 pt-16 pb-20 md:px-12 md:pt-24 md:pb-28 min-h-[60vh] flex flex-col justify-start">
+    <div class="container-content">
+      <h1 class="headline mb-12 max-w-[14ch] text-6xl leading-[0.9] md:text-8xl lg:text-[10rem] fade-up text-foreground">
+        DATA ANALYST & <br/> IT DEVELOPER
+      </h1>
+      <div class="fade-up stagger-1">
+        <p class="max-w-[600px] font-body text-xl text-muted md:text-2xl leading-relaxed">
+          {person.tagline}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Stats Bar -->
+  <section class="border-y border-borderline/20 bg-transparent">
+    <div class="container-content px-6 py-16 md:px-12 grid grid-cols-3 gap-6 text-center md:text-left fade-up animate-counter-container">
+      <div class="flex flex-col md:items-start items-center gap-1">
+        <p class="headline text-4xl md:text-7xl text-accent">
+          +<span class="animate-counter" data-target="2">0</span>
+        </p>
+        <p class="font-display font-bold uppercase tracking-widest text-[10px] md:text-xs text-muted">Years Experience</p>
+      </div>
+      <div class="flex flex-col md:items-start items-center gap-1">
+        <p class="headline text-4xl md:text-7xl text-accent">
+          +<span class="animate-counter" data-target="9">0</span>
+        </p>
+        <p class="font-display font-bold uppercase tracking-widest text-[10px] md:text-xs text-muted">Projects Completed</p>
+      </div>
+      <div class="flex flex-col md:items-start items-center gap-1">
+        <p class="headline text-4xl md:text-7xl text-accent">
+          +<span class="animate-counter" data-target="4">0</span>
+        </p>
+        <p class="font-display font-bold uppercase tracking-widest text-[10px] md:text-xs text-muted">Tech Stacks Mastered</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Skills Tags -->
+  <section class="section-padding">
+    <div class="container-content fade-up">
+      <h2 class="headline mb-8 text-sm uppercase tracking-widest text-muted">Skills</h2>
+      <p class="font-display text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-display text-foreground uppercase">
+        PYTHON, SQL, DATA ANALYSIS, ASTRO, TYPESCRIPT, JUPYTER NOTEBOOK, PANDAS, TABLEAU, MONGODB, REACT
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Recent Projects -->
+  <section class="border-t border-borderline/20 section-padding">
+    <div class="container-content">
+      <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between fade-up">
+        <h2 class="headline text-5xl md:text-7xl text-foreground">Projects</h2>
+        <a href="/projects" class="font-display text-sm font-bold uppercase tracking-widest text-accent hover:text-foreground transition-colors duration-300">
+          All projects ↗
+        </a>
+      </div>
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+        {
+          featuredProjects.map((project, index) => (
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              href={project.href}
+              live={project.live}
+              image={project.image}
+              mainTech={project.mainTech}
+              variant="full"
+              external
+              delay={index % 3}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Experience Timeline -->
+  <section class="border-t border-borderline/20 pt-32 pb-8 md:pt-40 md:pb-8 px-6 md:px-12">
+    <div class="container-content max-w-4xl fade-up">
+      <h2 class="headline mb-20 text-5xl md:text-7xl text-foreground">Experience</h2>
+      <div class="flex flex-col border-t border-borderline/20">
+        {
+          education.map((entry) => (
+            <div class="flex flex-col md:flex-row md:justify-between gap-6 md:gap-16 border-b border-borderline/20 py-12">
+              <div class="md:w-1/3 shrink-0">
+                <span class="font-display text-xl font-bold text-accent tracking-display">{entry.period}</span>
+                <p class="font-display text-lg uppercase font-bold text-foreground mt-1">{entry.institution}</p>
+              </div>
+              <div class="md:w-2/3 flex flex-col gap-4 border-t border-borderline/20 pt-6 md:border-t-0 md:border-l md:pt-0 md:pl-16">
+                <h3 class="headline text-3xl md:text-4xl text-foreground leading-none">{entry.degree}</h3>
+                {entry.highlights && (
+                  <ul class="font-body text-base text-muted space-y-3 mt-2 list-none pl-0">
+                    {entry.highlights.map(h => (
+                      <li class="relative pl-6 before:content-['—'] before:absolute before:left-0 before:text-accent">{h}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+</Layout>

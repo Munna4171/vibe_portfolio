@@ -1,0 +1,60 @@
+---
+import { person } from '../data/site';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+];
+---
+
+<footer class="bg-background text-foreground mt-0">
+  <div class="container-content px-6 pt-10 pb-20 md:px-12 md:pt-10 md:pb-32">
+    <div class="flex flex-col gap-16 md:flex-row md:items-start md:justify-between">
+      <div class="flex flex-col gap-8 max-w-sm">
+        <a href="/" class="headline text-4xl text-foreground transition-colors duration-300 hover:text-accent">
+          {person.fullName}
+        </a>
+        <p class="font-body text-base text-muted leading-relaxed">
+          Creating intuitive user experiences and turning complex data into clear insights.
+        </p>
+      </div>
+
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-col gap-6 md:text-right">
+          {
+            links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="headline text-lg text-foreground transition-colors duration-300 hover:text-accent"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a
+              href={person.githubUrl}
+              class="headline text-lg text-foreground transition-colors duration-300 hover:text-accent"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="mt-24 pt-8 border-t border-borderline/20 flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
+      <p class="font-body text-sm text-muted">
+        &copy; {new Date().getFullYear()} {person.fullName}. All rights reserved.
+      </p>
+      <a href="#top" class="headline text-sm text-foreground transition-colors duration-300 hover:text-accent">
+        Back to top &uarr;
+      </a>
+    </div>
+  </div>
+</footer>
