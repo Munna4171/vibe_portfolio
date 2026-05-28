@@ -2,7 +2,7 @@
 
 A dark, minimalist portfolio inspired by the **Sawad** Framer template — built with Astro, TypeScript, and zero clutter.
 
-[🔗 Live Site](bhagathpranav.vercel.app) · [📂 All Projects](https://github.com/BhagathPranav?tab=repositories)
+[🔗 Live Site](https://bhagathpranav.vercel.app) · [📂 All Projects](https://github.com/BhagathPranav?tab=repositories)
 
 ---
 
@@ -41,7 +41,7 @@ A single-page portfolio site that showcases my work as a **Data Analyst & IT Dev
 |---------|------|------|
 | **AI-chart** | TypeScript | [GitHub](https://github.com/BhagathPranav/AI-chart) |
 | **Pinventory** | TypeScript | [GitHub](https://github.com/BhagathPranav/Pinventory) · [Live](https://pinventory-rho.vercel.app) |
-| **Vibe Portfolio** | Astro | [GitHub](https://github.com/BhagathPranav/vibe_portfolio) · [Live](https://vibe-portfolio-ten-pi.vercel.app) |
+| **Vibe Portfolio** | Astro | [GitHub](https://github.com/BhagathPranav/vibe_portfolio) · [Live](https://bhagathpranav.vercel.app) |
 
 ### 📂 Full Archive (Projects Page)
 
